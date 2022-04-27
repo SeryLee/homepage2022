@@ -1,10 +1,10 @@
-package egovframework.let.temp.service;
+package egovframework.let.temp2.service;
 
 import java.io.Serializable;
 
 import egovframework.com.cmm.ComDefaultVO;
 
-public class TempVO extends ComDefaultVO implements Serializable {
+public class Temp2VO extends ComDefaultVO implements Serializable {
 	//임시데이터ID
 	private String tempId;
 	
