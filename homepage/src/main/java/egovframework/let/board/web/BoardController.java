@@ -217,10 +217,7 @@ public class BoardController {
 		return "forward:/board/selectList.do";
 	}
 	
-	@RequestMapping(value = "/board/index.do")
-	public String home() throws Exception{
-		return "/index";
-	}
+
 }
 
 

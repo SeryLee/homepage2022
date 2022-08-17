@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +21,32 @@ public class TempController {
 	
 	@Resource(name = "tempService")
 	private TempService tempService;
+	
+	//ajax 샘플
+	@RequestMapping(value="/temp/ajaxRegist.do")
+	public String tempAjaxRegist(@ModelAttribute("searchVO") TempVO searchVO,
+			HttpServletRequest request, ModelMap model) throws Exception {
+		return "/temp/TempAjaxRegist";
+		
+	}
+	
+	//ajax 목록
+	@RequestMapping(value="/temp/ajaxList.do")
+	public String tempAjaxList(@ModelAttribute("searchVO") TempVO searchVO,
+			HttpServletRequest request, ModelMap model) throws Exception {
+		//내용 저장
+		if(!EgovStringUtil.isEmpty(searchVO.getTempVal())) {
+			tempService.insertTemp(searchVO);
+		}
+		
+		searchVO.setRecordCountPerPage(Integer.MAX_VALUE);
+		searchVO.setFirstIndex(0);
+		
+		List<EgovMap> resultList = tempService.selectTempList(searchVO);
+		model.addAttribute("resultList", resultList);
+		
+		return "/temp/TempAjaxList";
+	}
 	
 	//임시데이터 가져오기
 	@RequestMapping(value = "/temp/select.do")
