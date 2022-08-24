@@ -3,7 +3,6 @@ package egovframework.let.join.web;
 import java.io.PrintWriter;
 
 import javax.annotation.Resource;
-import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
